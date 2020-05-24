@@ -66,6 +66,9 @@ class Http extends AbstractTransport
         }
 
         $baseUri .= $requestPath;
+        if(strpos($baseUri, "_bulk")===false && strpos($baseUri, "_refresh")===false) {
+            $baseUri .= "?include_type_name=true";
+        }
 
         $query = $request->getQuery();
 
